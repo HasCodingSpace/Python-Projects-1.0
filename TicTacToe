@@ -1,0 +1,53 @@
+import random
+
+class Game:
+    def __init__(self):
+        self.board = [" "]*9
+
+    def print_board(self):
+        print("\n".join(" | ".join(self.board[i:i+3]) for i in range(0, 9, 3)))
+
+    def get_user_input(self):
+        while True:
+            try:
+                position = int(input("Enter position: "))
+                if 0 <= position <= 8 and self.board[position] == " ":
+                    return position
+                else:
+                    print("Invalid position. Please enter a number between 0 and 8 for an empty spot.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+    def get_random_input(self):
+        empty_positions = [i for i in range(9) if self.board[i] == " "]
+        return random.choice(empty_positions)
+
+    def place_marker(self, marker, position=None):
+        if marker == "X":
+            position = self.get_user_input()
+        else:
+            position = self.get_random_input()
+        self.board[position] = marker
+        self.print_board()
+
+    def game_finished(self):
+        b = self.board
+        for i, j, k in [(0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6)]:
+            if b[i] == b[j] == b[k] != " ":
+                return b[i]
+        return False
+
+    def play(self):
+        while " " in self.board:
+            for marker in ["X", "O"]:
+                self.place_marker(marker)
+                winner = self.game_finished()
+                if winner:
+                    if winner == 'X':
+                        print('You win!')
+                    else:
+                        print('You lose!')
+                    return
+
+game = Game()
+game.play()
