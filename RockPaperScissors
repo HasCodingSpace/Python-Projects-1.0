@@ -1,0 +1,16 @@
+import random
+
+def play():
+    player = input("Make Your Choice: Rock (r) , Paper (p) or Scissors(s): ")
+    computer = random.choice(["r", "p", "s"])
+    if player == computer:
+        return ("It's a Tie!!!")
+    elif player != computer:
+        if player == "r" and computer == "s" or player == "p" and computer == "r" or player == "s" and computer == "p":
+            print (f'You chose: "{player}" and Computer chose: "{computer}". You Won!!!')
+        elif computer == "r" and player == "s" or computer == "p" and player == "r" or computer == "s" and player == "p":
+            print (f'You chose: "{player}" and Computer chose: "{computer}". You Lost!!!')
+        else:
+            print("Invalid Character , please choice either: Rock (r) , Paper (p) or Scissors(s).")
+
+play()
