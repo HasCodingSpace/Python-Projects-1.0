@@ -38,6 +38,7 @@ class Game:
         return False
 
     def play(self):
+        self.print_board()
         while " " in self.board:
             for marker in ["X", "O"]:
                 self.place_marker(marker)
