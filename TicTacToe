@@ -1,4 +1,4 @@
-import random
+import rando
 
 class Game:
     def __init__(self):
